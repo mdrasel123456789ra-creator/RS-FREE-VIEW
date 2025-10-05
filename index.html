@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script type='text/javascript' src='//pl27177160.revenuecpmgate.com/c8/d7/8e/c8d78e714d016941602c0a24000bb737.js'></script>
+<head>
+<script type='text/javascript' src='//pl27177160.revenuecpmgate.com/c8/d7/8e/c8d78e714d016941602c0a24000bb737.js'></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RS FREE VIEW WATCHTIME</title>
+    <title>FREE WATCH TIME</title>
     <style>
         * {
             margin: 0;
@@ -174,40 +175,6 @@
             border-color: #4facfe;
         }
 
-        .option-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .option-btn {
-            flex: 1;
-            padding: 12px 20px;
-            background: #f0f0f0;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .option-btn:hover {
-            background: #e0e0e0;
-        }
-
-        .option-btn.active {
-            background: linear-gradient(to right, #4facfe, #00f2fe);
-            color: white;
-        }
-
-        .views-section, .watchtime-section {
-            display: none;
-        }
-
-        .views-section.active, .watchtime-section.active {
-            display: block;
-        }
-
         .number-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -267,18 +234,6 @@
         .action-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Cycle Status */
-        .cycle-status {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            font-weight: 600;
-            color: #4ecdc4;
-            margin-bottom: 20px;
-            display: none;
         }
 
         /* Players Grid */
@@ -402,23 +357,13 @@
         .status-paused {
             background: #ff6b6b;
         }
-
-        /* Invisible Players */
-        #invisible-players {
-            position: absolute;
-            top: -9999px;
-            left: -9999px;
-            width: 0;
-            height: 0;
-            overflow: hidden;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Header Section -->
         <div class="header">
-            <h1 class="app-name">RS FREE VIEW WACHTIME</h1>
+            <h1 class="app-name">YouTube WATCH TIME</h1>
             <p></p>
         </div>
 
@@ -451,59 +396,27 @@
                     <label for="youtubeUrl">Paste your YouTube link 🎥</label>
                     <input type="text" id="youtubeUrl" class="url-input" placeholder="https://www.youtube.com/watch?v=...">
                 </div>
-
+                
                 <div class="input-group">
-                    <label>Select Option</label>
-                    <div class="option-buttons">
-                        <button class="option-btn active" data-option="views">Views 👁️</button>
-                        <button class="option-btn" data-option="watchtime">Watch Time ⏱️</button>
-                    </div>
-                </div>
-
-                <div class="views-section active" id="viewsSection">
-                    <div class="input-group">
-                        <label>Select number of views</label>
-                        <div class="number-buttons" id="viewsNumberButtons">
-                            <button class="number-btn" data-count="10">10</button>
-                            <button class="number-btn" data-count="25">25</button>
-                            <button class="number-btn" data-count="50">50</button>
-                            <button class="number-btn" data-count="100">100</button>
-                        </div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="customViewsCount">Or enter custom views</label>
-                        <input type="number" id="customViewsCount" class="custom-input" placeholder="Enter views count" min="1">
-                    </div>
-                </div>
-
-                <div class="watchtime-section" id="watchtimeSection">
-                    <div class="input-group">
-                        <label>Select number of players</label>
-                        <div class="number-buttons" id="watchtimeNumberButtons">
-                            <button class="number-btn" data-count="5">5</button>
-                            <button class="number-btn" data-count="10">10</button>
-                            <button class="number-btn" data-count="15">15</button>
-                            <button class="number-btn" data-count="20">20</button>
-                            <button class="number-btn" data-count="25">25</button>
-                            <button class="number-btn" data-count="30">30</button>
-                            <button class="number-btn" data-count="35">35</button>
-                            <button class="number-btn" data-count="40">40</button>
-                        </div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="customWatchtimeCount">Or enter custom players</label>
-                        <input type="number" id="customWatchtimeCount" class="custom-input" placeholder="Enter players count" min="1">
+                    <label>Select number of players</label>
+                    <div class="number-buttons" id="numberButtons">
+                        <button class="number-btn" data-count="5">5</button>
+                        <button class="number-btn" data-count="10">10</button>
+                        <button class="number-btn" data-count="15">15</button>
+                        <button class="number-btn" data-count="20">20</button>
+                        <button class="number-btn" data-count="25">25</button>
+                        <button class="number-btn" data-count="30">30</button>
+                        <button class="number-btn" data-count="35">35</button>
+                        <button class="number-btn" data-count="40">40</button>
                     </div>
                 </div>
                 
-                <button class="action-btn" id="loadPlayersBtn">Load Process 🚀</button>
-            </div>
-
-            <!-- Cycle Status -->
-            <div class="cycle-status" id="cycleStatus">
-                Processing your request...
+                <div class="input-group">
+                    <label for="customCount">Or enter custom number</label>
+                    <input type="number" id="customCount" class="custom-input" placeholder="Enter number">
+                </div>
+                
+                <button class="action-btn" id="loadPlayersBtn">Load Players 🚀</button>
             </div>
 
             <!-- Players Grid -->
@@ -529,8 +442,6 @@
         <button class="control-btn add" id="addPlayerBtn">➕ Add Player</button>
     </div>
 
-    <div id="invisible-players"></div>
-
     <script>
         // Global variables
         let players = [];
@@ -540,9 +451,6 @@
         let timerInterval;
         let secondsLeft = 60;
         let isAutoPaused = false;
-        let selectedOption = 'views';
-        let selectedViewsCount = 10;
-        let selectedWatchtimeCount = 5;
 
         // Wait for the YouTube IFrame API to load
         let tag = document.createElement('script');
@@ -563,10 +471,8 @@
         const vpnBtn = document.getElementById('vpnBtn');
         const telegramBtn = document.getElementById('telegramBtn');
         const youtubeUrl = document.getElementById('youtubeUrl');
-        const viewsNumberButtons = document.getElementById('viewsNumberButtons');
-        const watchtimeNumberButtons = document.getElementById('watchtimeNumberButtons');
-        const customViewsCount = document.getElementById('customViewsCount');
-        const customWatchtimeCount = document.getElementById('customWatchtimeCount');
+        const numberButtons = document.getElementById('numberButtons');
+        const customCount = document.getElementById('customCount');
         const loadPlayersBtn = document.getElementById('loadPlayersBtn');
         const playersGrid = document.getElementById('playersGrid');
         const controlsSection = document.getElementById('controlsSection');
@@ -576,9 +482,6 @@
         const addPlayerBtn = document.getElementById('addPlayerBtn');
         const timerText = document.getElementById('timerText');
         const statusIndicator = document.getElementById('statusIndicator');
-        const cycleStatus = document.getElementById('cycleStatus');
-        const viewsSection = document.getElementById('viewsSection');
-        const watchtimeSection = document.getElementById('watchtimeSection');
 
         // Enable cancel button after 5 seconds
         setTimeout(() => {
@@ -606,59 +509,34 @@
             window.open('https://t.me/rshackteam', '_blank');
         });
 
-        // Option buttons
-        document.querySelectorAll('.option-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                selectedOption = e.target.getAttribute('data-option');
-                viewsSection.classList.toggle('active', selectedOption === 'views');
-                watchtimeSection.classList.toggle('active', selectedOption === 'watchtime');
-            });
-        });
-
-        // Views number button selection
-        viewsNumberButtons.addEventListener('click', (e) => {
+        // Number button selection
+        numberButtons.addEventListener('click', (e) => {
             if (e.target.classList.contains('number-btn')) {
-                document.querySelectorAll('#viewsNumberButtons .number-btn').forEach(btn => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.number-btn').forEach(btn => {
                     btn.classList.remove('active');
                 });
+                
+                // Add active class to clicked button
                 e.target.classList.add('active');
-                customViewsCount.value = e.target.getAttribute('data-count');
-                selectedViewsCount = parseInt(e.target.getAttribute('data-count'));
+                
+                // Set custom count input to the selected value
+                customCount.value = e.target.getAttribute('data-count');
             }
         });
 
-        // Watchtime number button selection
-        watchtimeNumberButtons.addEventListener('click', (e) => {
-            if (e.target.classList.contains('number-btn')) {
-                document.querySelectorAll('#watchtimeNumberButtons .number-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                e.target.classList.add('active');
-                customWatchtimeCount.value = e.target.getAttribute('data-count');
-                selectedWatchtimeCount = parseInt(e.target.getAttribute('data-count'));
-            }
-        });
-
-        // Custom inputs
-        customViewsCount.addEventListener('input', () => {
-            document.querySelectorAll('#viewsNumberButtons .number-btn').forEach(btn => {
+        // Custom count input
+        customCount.addEventListener('input', () => {
+            // Remove active class from all number buttons
+            document.querySelectorAll('.number-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            selectedViewsCount = parseInt(customViewsCount.value) || 0;
         });
 
-        customWatchtimeCount.addEventListener('input', () => {
-            document.querySelectorAll('#watchtimeNumberButtons .number-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            selectedWatchtimeCount = parseInt(customWatchtimeCount.value) || 0;
-        });
-
-        // Load process
+        // Load players
         loadPlayersBtn.addEventListener('click', () => {
             const url = youtubeUrl.value.trim();
+            const count = parseInt(customCount.value) || 5;
             
             if (!url) {
                 alert('Please enter a YouTube URL');
@@ -673,29 +551,20 @@
             }
             
             videoId = extractedId;
+            playerCount = count;
             
             // Clear previous players
-            clearPlayers();
             playersGrid.innerHTML = '';
-            document.getElementById('invisible-players').innerHTML = '';
+            players = [];
             
-            if (selectedOption === 'views') {
-                const count = selectedViewsCount > 0 ? selectedViewsCount : 10;
-                if (count <= 0) {
-                    alert('Please select or enter a valid number of views');
-                    return;
-                }
-                sendInvisibleViews(count);
-            } else {
-                const count = selectedWatchtimeCount > 0 ? selectedWatchtimeCount : 5;
-                if (count <= 0) {
-                    alert('Please select or enter a valid number of players');
-                    return;
-                }
-                createPlayers(count);
-                controlsSection.style.display = 'flex';
-                startAutoCycle();
-            }
+            // Create players
+            createPlayers(count);
+            
+            // Show controls
+            controlsSection.style.display = 'flex';
+            
+            // Start the auto pause/resume cycle
+            startAutoCycle();
         });
 
         // Control buttons
@@ -732,7 +601,7 @@
                 }
             });
             
-            muteBtn.innerHTML = isMuted ? 'Sound On 🔊' : 'Sound Off 🔇';
+            muteBtn.textContent = isMuted ? 'Sound On 🔊' : 'Sound Off 🔇';
         });
 
         addPlayerBtn.addEventListener('click', () => {
@@ -742,7 +611,7 @@
             }
             
             createPlayers(1);
-            selectedWatchtimeCount++;
+            playerCount++;
         });
 
         // Helper Functions
@@ -753,8 +622,6 @@
         }
 
         function createPlayers(count) {
-            cycleStatus.style.display = 'block';
-            cycleStatus.textContent = 'Loading players...';
             for (let i = 0; i < count; i++) {
                 const playerCard = document.createElement('div');
                 playerCard.className = 'player-card';
@@ -780,68 +647,16 @@
                         'enablejsapi': 1,
                         'autoplay': 0,
                         'controls': 1,
-                        'rel': 0,
-                        'mute': 1,
-                        'loop': 1,
-                        'playlist': videoId
+                        'rel': 0
                     },
                     events: {
-                        'onReady': (event) => {
-                            event.target.playVideo();
-                        },
+                        'onReady': onPlayerReady,
                         'onStateChange': onPlayerStateChange
                     }
                 });
                 
                 players.push(player);
             }
-            setTimeout(() => {
-                cycleStatus.style.display = 'none';
-            }, 2000);
-        }
-
-        function sendInvisibleViews(count) {
-            cycleStatus.style.display = 'block';
-            cycleStatus.textContent = `Sending ${count} views...`;
-            
-            const container = document.getElementById('invisible-players');
-            for (let i = 0; i < count; i++) {
-                const playerDiv = document.createElement('div');
-                playerDiv.id = `invisible_player_${i}`;
-                container.appendChild(playerDiv);
-
-                const player = new YT.Player(playerDiv.id, {
-                    height: '1', width: '1', videoId: videoId,
-                    playerVars: { 'autoplay': 1, 'mute': 1 },
-                    events: {
-                        'onReady': (event) => {
-                            event.target.playVideo();
-                            setTimeout(() => {
-                                try { 
-                                    event.target.destroy(); 
-                                    const elem = document.getElementById(playerDiv.id);
-                                    if(elem) elem.remove();
-                                } catch(e) {}
-                            }, 40000); 
-                        }
-                    }
-                });
-            }
-            setTimeout(() => {
-                cycleStatus.textContent = `${count} views sent successfully!`;
-                setTimeout(() => {
-                    cycleStatus.style.display = 'none';
-                }, 3000);
-            }, 45000);
-        }
-
-        function clearPlayers() {
-            players.forEach(p => { 
-                try { p.destroy(); } catch(e) {} 
-            });
-            players = [];
-            controlsSection.style.display = 'none';
-            clearInterval(timerInterval);
         }
 
         function onPlayerReady(event) {
