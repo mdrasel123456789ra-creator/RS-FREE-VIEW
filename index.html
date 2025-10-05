@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script type='text/javascript' src='//pl27177160.revenuecpmgate.com/c8/d7/8e/c8d78e714d016941602c0a24000bb737.js'></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS FREE VIEW WATCHTIME</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-name {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: colorShift 5s infinite alternate;
+            margin-bottom: 10px;
+        }
+
+        @keyframes colorShift {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(90deg); }
+        }
+
+        /* Disclaimer Styles */
+        .disclaimer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .disclaimer-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .disclaimer h2 {
+            margin-bottom: 20px;
+            color: #ff6b6b;
+        }
+
+        .disclaimer p {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .disclaimer-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .disclaimer-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .cancel-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: not-allowed;
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+
+        .cancel-btn.active {
+            cursor: pointer;
+            opacity: 1;
+            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+        }
+
+        .cancel-btn.active:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Main App Styles */
+        .main-app {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .input-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .url-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #4facfe;
+        }
+
+        .option-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            flex: 1;
+            padding: 12px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .option-btn.active {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+        }
+
+        .views-section, .watchtime-section {
+            display: none;
+        }
+
+        .views-section.active, .watchtime-section.active {
+            display: block;
+        }
+
+        .number-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .number-btn {
+            padding: 12px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .number-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .number-btn.active {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+        }
+
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .custom-input:focus {
+            outline: none;
+            border-color: #4facfe;
+        }
+
+        .action-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Cycle Status */
+        .cycle-status {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 600;
+            color: #4ecdc4;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        /* Players Grid */
+        .players-section {
+            margin-top: 30px;
+        }
+
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .players-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        .player-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .player-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+
+        .player-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Controls Section */
+        .controls-section {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .control-btn {
+            padding: 12px 20px;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .control-btn.mute {
+            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+        }
+
+        .control-btn.add {
+            background: linear-gradient(to right, #96ceb4, #4ecdc4);
+        }
+
+        /* Timer Display */
+        .timer-display {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-playing {
+            background: #4ecdc4;
+        }
+
+        .status-paused {
+            background: #ff6b6b;
+        }
+
+        /* Invisible Players */
+        #invisible-players {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1 class="app-name">RS FREE VIEW WACHTIME</h1>
+            <p></p>
+        </div>
+
+        <!-- Disclaimer Screen -->
+        <div class="disclaimer" id="disclaimer">
+            <div class="disclaimer-content">
+                <h2>⚠️ Disclaimer</h2>
+                <p>This app is for educational purposes only. Please ensure you have the necessary rights to play the content.</p>
+                <p>For optimal performance and access, consider using a VPN service.</p>
+                
+                <button class="disclaimer-btn" id="vpnBtn">
+                    🔒 Connect VPN
+                </button>
+                
+                <button class="disclaimer-btn" id="telegramBtn">
+                    📢 Join Telegram Channel
+                </button>
+                
+                <button class="cancel-btn" id="cancelBtn" disabled>
+                    Cancel ❌
+                </button>
+            </div>
+        </div>
+
+        <!-- Main App Content -->
+        <div class="main-app" id="mainApp">
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="youtubeUrl">Paste your YouTube link 🎥</label>
+                    <input type="text" id="youtubeUrl" class="url-input" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+
+                <div class="input-group">
+                    <label>Select Option</label>
+                    <div class="option-buttons">
+                        <button class="option-btn active" data-option="views">Views 👁️</button>
+                        <button class="option-btn" data-option="watchtime">Watch Time ⏱️</button>
+                    </div>
+                </div>
+
+                <div class="views-section active" id="viewsSection">
+                    <div class="input-group">
+                        <label>Select number of views</label>
+                        <div class="number-buttons" id="viewsNumberButtons">
+                            <button class="number-btn" data-count="10">10</button>
+                            <button class="number-btn" data-count="25">25</button>
+                            <button class="number-btn" data-count="50">50</button>
+                            <button class="number-btn" data-count="100">100</button>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="customViewsCount">Or enter custom views</label>
+                        <input type="number" id="customViewsCount" class="custom-input" placeholder="Enter views count" min="1">
+                    </div>
+                </div>
+
+                <div class="watchtime-section" id="watchtimeSection">
+                    <div class="input-group">
+                        <label>Select number of players</label>
+                        <div class="number-buttons" id="watchtimeNumberButtons">
+                            <button class="number-btn" data-count="5">5</button>
+                            <button class="number-btn" data-count="10">10</button>
+                            <button class="number-btn" data-count="15">15</button>
+                            <button class="number-btn" data-count="20">20</button>
+                            <button class="number-btn" data-count="25">25</button>
+                            <button class="number-btn" data-count="30">30</button>
+                            <button class="number-btn" data-count="35">35</button>
+                            <button class="number-btn" data-count="40">40</button>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="customWatchtimeCount">Or enter custom players</label>
+                        <input type="number" id="customWatchtimeCount" class="custom-input" placeholder="Enter players count" min="1">
+                    </div>
+                </div>
+                
+                <button class="action-btn" id="loadPlayersBtn">Load Process 🚀</button>
+            </div>
+
+            <!-- Cycle Status -->
+            <div class="cycle-status" id="cycleStatus">
+                Processing your request...
+            </div>
+
+            <!-- Players Grid -->
+            <div class="players-section">
+                <div class="players-grid" id="playersGrid">
+                    <!-- Players will be inserted here dynamically -->
+                </div>
+                
+                <!-- Timer Display -->
+                <div class="timer-display">
+                    <span class="status-indicator status-playing" id="statusIndicator"></span>
+                    <span id="timerText">Auto-pause in: 60 seconds</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls Section -->
+    <div class="controls-section" id="controlsSection" style="display: none;">
+        <button class="control-btn" id="playAllBtn">Play All ▶️</button>
+        <button class="control-btn" id="pauseAllBtn">Pause All ⏸️</button>
+        <button class="control-btn mute" id="muteBtn">Sound Off 🔇</button>
+        <button class="control-btn add" id="addPlayerBtn">➕ Add Player</button>
+    </div>
+
+    <div id="invisible-players"></div>
+
+    <script>
+        // Global variables
+        let players = [];
+        let playerCount = 0;
+        let videoId = '';
+        let isMuted = false;
+        let timerInterval;
+        let secondsLeft = 60;
+        let isAutoPaused = false;
+        let selectedOption = 'views';
+        let selectedViewsCount = 10;
+        let selectedWatchtimeCount = 5;
+
+        // Wait for the YouTube IFrame API to load
+        let tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        let firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // This function creates an <iframe> (and YouTube player) for each video
+        function onYouTubeIframeAPIReady() {
+            // Players are created dynamically when the user loads them
+            console.log("YouTube API ready");
+        }
+
+        // DOM Elements
+        const disclaimer = document.getElementById('disclaimer');
+        const mainApp = document.getElementById('mainApp');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const vpnBtn = document.getElementById('vpnBtn');
+        const telegramBtn = document.getElementById('telegramBtn');
+        const youtubeUrl = document.getElementById('youtubeUrl');
+        const viewsNumberButtons = document.getElementById('viewsNumberButtons');
+        const watchtimeNumberButtons = document.getElementById('watchtimeNumberButtons');
+        const customViewsCount = document.getElementById('customViewsCount');
+        const customWatchtimeCount = document.getElementById('customWatchtimeCount');
+        const loadPlayersBtn = document.getElementById('loadPlayersBtn');
+        const playersGrid = document.getElementById('playersGrid');
+        const controlsSection = document.getElementById('controlsSection');
+        const playAllBtn = document.getElementById('playAllBtn');
+        const pauseAllBtn = document.getElementById('pauseAllBtn');
+        const muteBtn = document.getElementById('muteBtn');
+        const addPlayerBtn = document.getElementById('addPlayerBtn');
+        const timerText = document.getElementById('timerText');
+        const statusIndicator = document.getElementById('statusIndicator');
+        const cycleStatus = document.getElementById('cycleStatus');
+        const viewsSection = document.getElementById('viewsSection');
+        const watchtimeSection = document.getElementById('watchtimeSection');
+
+        // Enable cancel button after 5 seconds
+        setTimeout(() => {
+            cancelBtn.disabled = false;
+            cancelBtn.classList.add('active');
+        }, 5000);
+
+        // Event Listeners
+        cancelBtn.addEventListener('click', () => {
+            disclaimer.style.opacity = '0';
+            setTimeout(() => {
+                disclaimer.style.display = 'none';
+                mainApp.style.display = 'block';
+                setTimeout(() => {
+                    mainApp.style.opacity = '1';
+                }, 50);
+            }, 500);
+        });
+
+        vpnBtn.addEventListener('click', () => {
+            window.open('https://play.google.com/store/apps/details?id=com.browsec.vpn', '_blank');
+        });
+
+        telegramBtn.addEventListener('click', () => {
+            window.open('https://t.me/rshackteam', '_blank');
+        });
+
+        // Option buttons
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                selectedOption = e.target.getAttribute('data-option');
+                viewsSection.classList.toggle('active', selectedOption === 'views');
+                watchtimeSection.classList.toggle('active', selectedOption === 'watchtime');
+            });
+        });
+
+        // Views number button selection
+        viewsNumberButtons.addEventListener('click', (e) => {
+            if (e.target.classList.contains('number-btn')) {
+                document.querySelectorAll('#viewsNumberButtons .number-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                e.target.classList.add('active');
+                customViewsCount.value = e.target.getAttribute('data-count');
+                selectedViewsCount = parseInt(e.target.getAttribute('data-count'));
+            }
+        });
+
+        // Watchtime number button selection
+        watchtimeNumberButtons.addEventListener('click', (e) => {
+            if (e.target.classList.contains('number-btn')) {
+                document.querySelectorAll('#watchtimeNumberButtons .number-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                e.target.classList.add('active');
+                customWatchtimeCount.value = e.target.getAttribute('data-count');
+                selectedWatchtimeCount = parseInt(e.target.getAttribute('data-count'));
+            }
+        });
+
+        // Custom inputs
+        customViewsCount.addEventListener('input', () => {
+            document.querySelectorAll('#viewsNumberButtons .number-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            selectedViewsCount = parseInt(customViewsCount.value) || 0;
+        });
+
+        customWatchtimeCount.addEventListener('input', () => {
+            document.querySelectorAll('#watchtimeNumberButtons .number-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            selectedWatchtimeCount = parseInt(customWatchtimeCount.value) || 0;
+        });
+
+        // Load process
+        loadPlayersBtn.addEventListener('click', () => {
+            const url = youtubeUrl.value.trim();
+            
+            if (!url) {
+                alert('Please enter a YouTube URL');
+                return;
+            }
+            
+            // Extract video ID from URL
+            const extractedId = extractVideoId(url);
+            if (!extractedId) {
+                alert('Please enter a valid YouTube URL');
+                return;
+            }
+            
+            videoId = extractedId;
+            
+            // Clear previous players
+            clearPlayers();
+            playersGrid.innerHTML = '';
+            document.getElementById('invisible-players').innerHTML = '';
+            
+            if (selectedOption === 'views') {
+                const count = selectedViewsCount > 0 ? selectedViewsCount : 10;
+                if (count <= 0) {
+                    alert('Please select or enter a valid number of views');
+                    return;
+                }
+                sendInvisibleViews(count);
+            } else {
+                const count = selectedWatchtimeCount > 0 ? selectedWatchtimeCount : 5;
+                if (count <= 0) {
+                    alert('Please select or enter a valid number of players');
+                    return;
+                }
+                createPlayers(count);
+                controlsSection.style.display = 'flex';
+                startAutoCycle();
+            }
+        });
+
+        // Control buttons
+        playAllBtn.addEventListener('click', () => {
+            players.forEach(player => {
+                if (player && typeof player.playVideo === 'function') {
+                    player.playVideo();
+                }
+            });
+            isAutoPaused = false;
+            updateTimerDisplay();
+        });
+
+        pauseAllBtn.addEventListener('click', () => {
+            players.forEach(player => {
+                if (player && typeof player.pauseVideo === 'function') {
+                    player.pauseVideo();
+                }
+            });
+            isAutoPaused = true;
+            updateTimerDisplay();
+        });
+
+        muteBtn.addEventListener('click', () => {
+            isMuted = !isMuted;
+            
+            players.forEach(player => {
+                if (player) {
+                    if (isMuted) {
+                        player.mute();
+                    } else {
+                        player.unMute();
+                    }
+                }
+            });
+            
+            muteBtn.innerHTML = isMuted ? 'Sound On 🔊' : 'Sound Off 🔇';
+        });
+
+        addPlayerBtn.addEventListener('click', () => {
+            if (!videoId) {
+                alert('Please load players first');
+                return;
+            }
+            
+            createPlayers(1);
+            selectedWatchtimeCount++;
+        });
+
+        // Helper Functions
+        function extractVideoId(url) {
+            const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[7].length === 11) ? match[7] : false;
+        }
+
+        function createPlayers(count) {
+            cycleStatus.style.display = 'block';
+            cycleStatus.textContent = 'Loading players...';
+            for (let i = 0; i < count; i++) {
+                const playerCard = document.createElement('div');
+                playerCard.className = 'player-card';
+                
+                const playerContainer = document.createElement('div');
+                playerContainer.className = 'player-container';
+                playerContainer.id = `player-container-${players.length}`;
+                
+                const playerIframe = document.createElement('div');
+                playerIframe.id = `player-${players.length}`;
+                playerIframe.className = 'player-iframe';
+                
+                playerContainer.appendChild(playerIframe);
+                playerCard.appendChild(playerContainer);
+                playersGrid.appendChild(playerCard);
+                
+                // Create YouTube player
+                const player = new YT.Player(`player-${players.length}`, {
+                    height: '100%',
+                    width: '100%',
+                    videoId: videoId,
+                    playerVars: {
+                        'enablejsapi': 1,
+                        'autoplay': 0,
+                        'controls': 1,
+                        'rel': 0,
+                        'mute': 1,
+                        'loop': 1,
+                        'playlist': videoId
+                    },
+                    events: {
+                        'onReady': (event) => {
+                            event.target.playVideo();
+                        },
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+                
+                players.push(player);
+            }
+            setTimeout(() => {
+                cycleStatus.style.display = 'none';
+            }, 2000);
+        }
+
+        function sendInvisibleViews(count) {
+            cycleStatus.style.display = 'block';
+            cycleStatus.textContent = `Sending ${count} views...`;
+            
+            const container = document.getElementById('invisible-players');
+            for (let i = 0; i < count; i++) {
+                const playerDiv = document.createElement('div');
+                playerDiv.id = `invisible_player_${i}`;
+                container.appendChild(playerDiv);
+
+                const player = new YT.Player(playerDiv.id, {
+                    height: '1', width: '1', videoId: videoId,
+                    playerVars: { 'autoplay': 1, 'mute': 1 },
+                    events: {
+                        'onReady': (event) => {
+                            event.target.playVideo();
+                            setTimeout(() => {
+                                try { 
+                                    event.target.destroy(); 
+                                    const elem = document.getElementById(playerDiv.id);
+                                    if(elem) elem.remove();
+                                } catch(e) {}
+                            }, 40000); 
+                        }
+                    }
+                });
+            }
+            setTimeout(() => {
+                cycleStatus.textContent = `${count} views sent successfully!`;
+                setTimeout(() => {
+                    cycleStatus.style.display = 'none';
+                }, 3000);
+            }, 45000);
+        }
+
+        function clearPlayers() {
+            players.forEach(p => { 
+                try { p.destroy(); } catch(e) {} 
+            });
+            players = [];
+            controlsSection.style.display = 'none';
+            clearInterval(timerInterval);
+        }
+
+        function onPlayerReady(event) {
+            // Player is ready, but we're not autoplaying
+            console.log('Player ready');
+        }
+
+        function onPlayerStateChange(event) {
+            // Handle player state changes if needed
+        }
+
+        function startAutoCycle() {
+            clearInterval(timerInterval);
+            secondsLeft = 60;
+            isAutoPaused = false;
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                secondsLeft--;
+                
+                if (secondsLeft <= 0) {
+                    if (!isAutoPaused) {
+                        // Pause all videos
+                        players.forEach(player => {
+                            if (player && typeof player.pauseVideo === 'function') {
+                                player.pauseVideo();
+                            }
+                        });
+                        isAutoPaused = true;
+                        secondsLeft = 3; // 3 second pause
+                    } else {
+                        // Resume all videos
+                        players.forEach(player => {
+                            if (player && typeof player.playVideo === 'function') {
+                                player.playVideo();
+                            }
+                        });
+                        isAutoPaused = false;
+                        secondsLeft = 60; // 60 second play
+                    }
+                }
+                
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const statusText = isAutoPaused ? 'Auto-resume in' : 'Auto-pause in';
+            timerText.textContent = `${statusText}: ${secondsLeft} seconds`;
+            
+            // Update status indicator
+            statusIndicator.className = 'status-indicator';
+            statusIndicator.classList.add(isAutoPaused ? 'status-paused' : 'status-playing');
+        }
+    </script>
+</body><script type='text/javascript' src='//pl27177187.revenuecpmgate.com/42/4c/9e/424c9ef4b8d401ba5a2ed5bdab57e0fa.js'></script>
+</html><script async="async" data-cfasync="false" src="//pl27177249.revenuecpmgate.com/1fa8c4e4f0935cf789130637100c74df/invoke.js"></script>
+<div id="container-1fa8c4e4f0935cf789130637100c74df"></div>
